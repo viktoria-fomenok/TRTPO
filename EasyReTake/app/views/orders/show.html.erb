@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @order.order_type %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @order.subject %>
+</p>
+
+<p>
+  <strong>Fio professor:</strong>
+  <%= @order.fio_professor %>
+</p>
+
+<p>
+  <strong>Position professor:</strong>
+  <%= @order.position_professor %>
+</p>
+
+<p>
+  <strong>Reason:</strong>
+  <%= @order.reason %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @order.data %>
+</p>
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>

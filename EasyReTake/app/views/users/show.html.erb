@@ -1,14 +1,75 @@
+<style type="text/css">
+	.name {
+		text-align: center;
+		font-size: 30px;
+		font-weight: bold;
+	}
+
+	table {
+		 border: 3px solid #000; 
+	}
+
+	th {
+    	padding: 5px; /* Поля вокруг текста */
+    	border: 2px solid #000; /* Рамка вокруг ячеек */
+    	background: rgb(46, 88, 166); /* Цвет фона таблицы */
+    }
+    td {
+    	padding: 5px; /* Поля вокруг текста */
+    	border: 1px solid #000; /* Рамка вокруг ячеек */
+    }
+</style>
+
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>First name:</strong>
+<div class="name">
   <%= @user.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
   <%= @user.last_name %>
-</p>
+  <% if @user.admin %>
+  	(Admin)
+  <% end %>
+</div>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div>
+<table>
+  <thead>
+    <tr>
+      <th>Subject</th>
+      <th>Data</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+ 	<tr>
+ 		<td>mfnkj</td>
+ 		<td>df,gn</td>
+ 		<td>dfn</td>
+ 	</tr>
+  </tbody>
+ <table>
+<div>
+
+<% unless @user.admin %>
+	<%= link_to "Create new order", new_user_order_path(user_id: @user), :method => :get %>
+
+	<% @user.orders.each do |order| %>
+		<%= order.subject %> 
+		<%= order.data %>  
+		<% if !order.status %>
+			<div>in progress</div>
+		<% else %>
+			<div>Ready</div>
+		<% end %>
+	<% end %>
+
+<% else %>
+	<% @users.each do |user| %>
+	  <%= user.first_name unless user.admin %>
+	  <% user.orders.each do |order| %>
+			<%= order.subject %>
+			<%= order.data %>
+		<% end %>
+	<% end %>
+<% end %>

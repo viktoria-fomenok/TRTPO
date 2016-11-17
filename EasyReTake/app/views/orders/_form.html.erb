@@ -1,0 +1,47 @@
+<%= form_for(order) do |f| %>
+  <% if order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :order_type %>
+    <%= f.text_field :order_type %>
+  </div>
+
+  <div class="field">
+    <%= f.label :subject %>
+    <%= f.text_field :subject %>
+  </div>
+
+  <div class="field">
+    <%= f.label :fio_professor %>
+    <%= f.text_field :fio_professor %>
+  </div>
+
+  <div class="field">
+    <%= f.label :position_professor %>
+    <%= f.text_field :position_professor %>
+  </div>
+
+  <div class="field">
+    <%= f.label :reason %>
+    <%= f.text_field :reason %>
+  </div>
+
+  <div class="field">
+    <%= f.label :data %>
+    <%= f.datetime_select :data %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

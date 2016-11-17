@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  subject: MyString
+  fio_professor: MyString
+  position_professor: MyString
+  reason: MyString
+  data: 2016-11-13 12:40:23
+
+two:
+  type: 
+  subject: MyString
+  fio_professor: MyString
+  position_professor: MyString
+  reason: MyString
+  data: 2016-11-13 12:40:23

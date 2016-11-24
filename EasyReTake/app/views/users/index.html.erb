@@ -72,11 +72,11 @@
   <div class="retake">Пересдавайте экзамены легко!</div>
 </div>
 <div class="devise">
-  <%= button_to "Sign up", new_user_registration_path, :class => "button signup" %>
+  <%= button_to "Регистрация", new_user_registration_path, :method => :get, :class => "button signup" %>
   <% if user_signed_in? %>
-  <%= button_to('Logout', destroy_user_session_path, :method => :delete, :class => "button")%>        
+  <%= button_to('Выйти', destroy_user_session_path, :method => :delete, :class => "button login")%>        
   <% else %>
-    <%= button_to('Login', new_user_session_path, :class => "button login")  %>   
+    <%= button_to('Войти', new_user_session_path, :class => "button login")  %>   
   <% end %>
 </div>
 

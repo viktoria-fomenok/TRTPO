@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :admins
   resources :orders
   get "users/info" => "users#info"
+  get 'orders/check/:id' => "orders#check", as: :orders_check
   devise_for :users, controllers: { sessions: "users/sessions" }
   resources :users
 

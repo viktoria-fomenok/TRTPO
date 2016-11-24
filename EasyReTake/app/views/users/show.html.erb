@@ -1,23 +1,32 @@
 <style type="text/css">
-	.name {
-		text-align: center;
-		font-size: 30px;
-		font-weight: bold;
-	}
+  .name {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+  }
 
-	table {
-		 border: 3px solid #000; 
-	}
+  .order_table {
+    margin-top: 100px;
+    margin-left: 380px;
+    font-size: 20px;
+  }
 
-	th {
-    	padding: 5px; /* Поля вокруг текста */
-    	border: 2px solid #000; /* Рамка вокруг ячеек */
-    	background: rgb(46, 88, 166); /* Цвет фона таблицы */
-    }
-    td {
-    	padding: 5px; /* Поля вокруг текста */
-    	border: 1px solid #000; /* Рамка вокруг ячеек */
-    }
+  td {
+    font-size: 20px;
+  }
+
+  .caption {
+    margin-bottom: 20px;
+  }
+
+  .new_order {
+    text-align: center;
+  }
+  .button {
+    position: absolute;
+    right: 100px;
+  }
+
 </style>
 
 
@@ -27,49 +36,54 @@
   <%= @user.first_name %>
   <%= @user.last_name %>
   <% if @user.admin %>
-  	(Admin)
+    (Admin)
   <% end %>
 </div>
 
-<div>
-<table>
-  <thead>
-    <tr>
-      <th>Subject</th>
-      <th>Data</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-
-  <tbody>
- 	<tr>
- 		<td>mfnkj</td>
- 		<td>df,gn</td>
- 		<td>dfn</td>
- 	</tr>
-  </tbody>
- <table>
-<div>
-
 <% unless @user.admin %>
-	<%= link_to "Create new order", new_user_order_path(user_id: @user), :method => :get %>
-
-	<% @user.orders.each do |order| %>
-		<%= order.subject %> 
-		<%= order.data %>  
-		<% if !order.status %>
-			<div>in progress</div>
-		<% else %>
-			<div>Ready</div>
-		<% end %>
-	<% end %>
+  <%= button_to "Добавить ведомостичку", new_user_order_path(user_id: @user), :method => :get, :class => "new_order" %>
+  <%= button_to('Выйти', destroy_user_session_path, :method => :delete, :class => "button")%> 
+  <table border="2px;" cellpadding="10px;" class="order_table">
+  <caption class="caption">Ведомостички</caption>
+  <tr>
+    <td>Предмет</td>
+    <td>Дата</td>
+    <td>Прогресс</td>
+  </tr>
+    <% @user.orders.each do |order| %>
+    <tr>
+      <td><%= order.subject %></td>
+      <td><%= order.data %></td>
+      <td><% if !order.status %>
+        <div>in progress</div>
+      <% else %>
+        <div>Ready</div>
+      </tr>
+      <% end %></td>
+    <% end %>
+  </table>
 
 <% else %>
-	<% @users.each do |user| %>
-	  <%= user.first_name unless user.admin %>
-	  <% user.orders.each do |order| %>
-			<%= order.subject %>
-			<%= order.data %>
-		<% end %>
-	<% end %>
+<%= button_to('Выйти', destroy_user_session_path, :method => :delete, :class => "button")%>
+<table border="2px;" cellpadding="10px;" class="order_table">
+<caption>Ведомостички</caption>
+  <tr>
+    <td>Имя</td>
+    <td>Предмет</td>
+    <td>Дата</td>
+    <td>Прогресс</td>
+    <td>Подтверждение</td>
+  </tr>
+  <% @users.each do |user| %>
+    
+    <% user.orders.each do |order| %>
+      <% unless order.status %>
+      <td><%= user.first_name unless user.admin %></td>
+        <td><%= order.subject %></td>
+        <td><%= order.data %></td>
+        <td><%= order.status %></td>
+        <td><%= button_to "Подтвердить", orders_check_path(order.id), :method => :get %></td>
+      <% end %>
+    <% end %>
+  <% end %>
 <% end %>

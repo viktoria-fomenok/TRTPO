@@ -12,6 +12,22 @@ class OrdersController < ApplicationController
   def show
   end
 
+  def check
+    @order = Order.find(params[:id])
+    @user = User.find(@order.user_id)
+    @order.status = true
+    respond_to do |format|
+      if @order.save
+        NotificationMailer.order_is_ready(@user, @order).deliver
+        format.html { redirect_to current_user }
+        format.json { render :show, status: :created, location: @order }
+      else
+        format.html { render :new }
+        format.json { render json: @order.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # GET /orders/new
   def new
     @order = Order.new
@@ -25,11 +41,12 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
+    @order.user_id = current_user.id
     current_user.orders.push(@order)
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to current_user, notice: 'Order was successfully created.' }
+        format.html { redirect_to current_user }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
@@ -43,7 +60,7 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
       if @order.update(order_params)
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
+        format.html { redirect_to @order }
         format.json { render :show, status: :ok, location: @order }
       else
         format.html { render :edit }
@@ -57,7 +74,7 @@ class OrdersController < ApplicationController
   def destroy
     @order.destroy
     respond_to do |format|
-      format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
+      format.html { redirect_to orders_url }
       format.json { head :no_content }
     end
   end

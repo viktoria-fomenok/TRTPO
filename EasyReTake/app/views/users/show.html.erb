@@ -1,8 +1,17 @@
 <style type="text/css">
+  .userpage {
+    position:absolute;
+    top: 5%;
+    left: 5%;
+    right: 5%;
+  }
+
   .name {
     text-align: center;
     font-size: 30px;
     font-weight: bold;
+    position: relative;
+    left: -3%;
   }
 
   .order_table {
@@ -13,6 +22,30 @@
 
   td {
     font-size: 20px;
+    color : ;
+  }
+
+  table {
+   opacity: 0.7;
+   background: rgb(70, 109, 117); /* Цвет фона */
+   table-layout: fixed; /* Фиксированная ширина ячеек */
+   width: 900px; /* Ширина таблицы */
+   position: relative;
+   left: -25%;
+   top: 0px;
+  }
+
+  .col1 { 
+    width: 385px; 
+  }
+  .col2 { 
+    width: 240px; 
+  }
+  .col3 { 
+    width: 160px; 
+  }
+  .col4 { 
+    width: 115px; 
   }
 
   .caption {
@@ -22,16 +55,20 @@
   .new_order {
     text-align: center;
   }
-  .button {
+  .buttonright {
     position: absolute;
-    right: 100px;
+    right: 30px;
+    top : 0px;
+  }
+  .buttonleft {
+    position: relative;
+    top: 50px;
+    left: 39%;
   }
 
 </style>
 
-
-<p id="notice"><%= notice %></p>
-
+<div class="userpage">
 <div class="name">
   <%= @user.first_name %>
   <%= @user.last_name %>
@@ -41,14 +78,19 @@
 </div>
 
 <% unless @user.admin %>
-  <%= button_to "Добавить ведомостичку", new_user_order_path(user_id: @user), :method => :get, :class => "new_order" %>
-  <%= button_to('Выйти', destroy_user_session_path, :method => :delete, :class => "button")%> 
+  <%= button_to "Добавить ведомостичку", new_user_order_path(user_id: @user), :method => :get, :class => "new_order buttonleft"  %>
+  <%= button_to('Выйти', destroy_user_session_path, :method => :delete, :class => "buttonright")%> 
   <table border="2px;" cellpadding="10px;" class="order_table">
   <caption class="caption">Ведомостички</caption>
+  <col class="col1">
+  <col class="col2">
+  <col class="col3">
+  <col class="col4">
   <tr>
     <td>Предмет</td>
     <td>Дата</td>
     <td>Прогресс</td>
+    <td>Удаление</td>
   </tr>
     <% @user.orders.each do |order| %>
     <tr>
@@ -58,13 +100,14 @@
         <div>in progress</div>
       <% else %>
         <div>Ready</div>
+        <td><%= button_to "Удалить" %></td>
       </tr>
       <% end %></td>
     <% end %>
   </table>
 
 <% else %>
-<%= button_to('Выйти', destroy_user_session_path, :method => :delete, :class => "button")%>
+<%= button_to('Выйти', destroy_user_session_path, :method => :delete, :class => "buttonright")%>
 <table border="2px;" cellpadding="10px;" class="order_table">
 <caption>Ведомостички</caption>
   <tr>
@@ -87,3 +130,4 @@
     <% end %>
   <% end %>
 <% end %>
+</div>

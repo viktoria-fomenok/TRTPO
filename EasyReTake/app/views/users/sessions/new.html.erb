@@ -2,11 +2,23 @@
   .login {
     position: absolute;
     left: 40%;
-    top: 25%;
+    top: 15%;
   }
+
+.buttonleft {
+}
+.buttonright {
+}
+h2 {
+  position: relative;
+  left: 20%;
+  color: rgb(50, 139, 156);
+}
 </style>
 
 <div class="login">
+
+<h2>Sign in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
@@ -26,10 +38,14 @@
     </div>
   <% end -%>
 
-  <div class="actions">
+  <div class="actions buttonleft">
     <%= f.submit "Log in" %>
   </div>
 <% end %>
+ <div class="buttonright">
+  <%= button_to "Back", root_path, :method => :get %>
+</div>
+
 
 <%= render "users/shared/links" %>
 

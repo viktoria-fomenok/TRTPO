@@ -16,6 +16,8 @@
 
 
  body {
- 	background: rgb(190,245,116);
+ 	background: url(7.jpg) no-repeat;
+ 	background-size: 100%;
+ 	background-attachment:fixed;
  }
  

@@ -1,21 +1,51 @@
+<style type="text/css">
+.registry {
+  position: absolute;
+  top: 2%;
+  right: 40%;
+}
+.field {
+  margin-top: 0%;
+}
+
+.rbutton1 {
+  display: inline-block;
+}
+.rbutton2 {
+  display: inline-block;
+}
+
+.buttonback {
+  position: relative;
+ 
+}
+
+h2 {
+  position: relative;
+  left: 20%;
+  color: rgb(50, 139, 156);
+}
+</style>
+
+<div class="registry">
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
    <div class="field">
-    <%= f.label :first_name %><br />
+    <%= f.label :first_name %>
     <%= f.text_field :first_name, autofocus: true %>
   </div>
 
    <div class="field">
-    <%= f.label :last_name %><br />
+    <%= f.label :last_name %>
     <%= f.text_field :last_name %>
   </div>
 
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email %>
     <%= f.email_field :email %>
   </div>
 
@@ -30,19 +60,31 @@
 
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
 
-   <div><%= f.radio_button :is_student, true %> <%= f.label :is_student, " Student" %> 
-   </div>
-   <div><%= f.radio_button :is_student, false %> <%= f.label :is_student, " Professor" %> 
-   </div>
+  <div class="rbutton1">
+    <%= f.radio_button :is_student, true%>
+  </div>
+  <div class="rbutton1">
+     <%= f.label :is_student, "Student"%> 
+  </div><br/>
+  <div class="rbutton2">
+    <%= f.radio_button :is_student, false %> 
+  </div>  
+  <div class="rbutton2">
+    <%= f.label :is_student, "Professor" %> 
+  </div><br/>
   
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
+  <div class="actions buttonback">
+    <%= button_to "Back", root_path, :method => :get %>
+  </div>
 
 <%= render "users/shared/links" %>
+</div>

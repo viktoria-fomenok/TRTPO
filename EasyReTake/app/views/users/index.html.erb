@@ -3,23 +3,29 @@
   .main_area {
     position: absolute;
     top: 0%;
-    left: 20%;
-    right: 20%;
+    left: 5%;
+    right: 5%;
   }
 
   .hello {
     text-align: center;
     font-size: 25px;
-    margin-bottom: 50px;
-    margin-top: 150px;
-    color: rgb(57, 56, 66);
+    color: #100137;
+    position: relative;
+    margin-top: 3%;
+    font-style: italic;
   }
+
 
   .retake {
     text-align: center;
-    font-size: 40px;
+    font-size: 50px;
     font-weight: bold;
-    color: rgb(11, 99, 56);
+    color: #1C0B4A;
+    position: relative;
+    margin-top: 5%;
+    margin-left: -50%;
+    line-height: 1.5;
   }
 
   .devise {
@@ -27,14 +33,15 @@
   }
 
   .signup {
-      position: absolute;
-      right: 40%;
-      top: 50%;
+      position: relative;
+      margin-left: 60%;
+      margin-top: 10%;
   }
   .login {
-      position: absolute;
-      left: 40%;
-      top: 50%;
+      position: relative;
+      margin-left: 67%;
+      margin-top: 0%;
+     
   }
 
   .button {
@@ -67,10 +74,10 @@
 </style>
 
 <div class="main_area">
-  <div class="hello">Добро пожаловать на сайт Easyre-take.by</div>
+  <div class="hello">Добро пожаловать на сайт Easyre-take.com</div>
 
-  <div class="retake">Пересдавайте экзамены легко!</div>
-</div>
+  <div class="retake">Пересдавайте <br> экзамены <br>легко!</div>
+
 <div class="devise">
   <%= button_to "Регистрация", new_user_registration_path, :method => :get, :class => "button signup" %>
   <% if user_signed_in? %>
@@ -79,7 +86,7 @@
     <%= button_to('Войти', new_user_session_path, :class => "button login")  %>   
   <% end %>
 </div>
-
+</div>
 
 
 

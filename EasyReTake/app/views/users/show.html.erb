@@ -14,15 +14,9 @@
     left: -3%;
   }
 
-  .order_table {
-    margin-top: 100px;
-    margin-left: 380px;
-    font-size: 20px;
-  }
 
   td {
     font-size: 20px;
-    color : ;
   }
 
   table {
@@ -31,8 +25,10 @@
    table-layout: fixed; /* Фиксированная ширина ячеек */
    width: 900px; /* Ширина таблицы */
    position: relative;
-   left: -25%;
-   top: 0px;
+   left: 8%;
+   top: 40px;
+   font-size: 20px;
+   border-color: rgb(3,3,3)
   }
 
   .col1 { 
@@ -47,9 +43,20 @@
   .col4 { 
     width: 115px; 
   }
+  .col5 { 
+    width: 165px; 
+  }
+  .col6 { 
+    width: 160px; 
+  }
+   .col7 { 
+    width: 180px; 
+  }
 
   .caption {
     margin-bottom: 20px;
+    font-size: 25px;
+    font-style: italic;
   }
 
   .new_order {
@@ -62,7 +69,7 @@
   }
   .buttonleft {
     position: relative;
-    top: 50px;
+    top: 35px;
     left: 39%;
   }
 
@@ -80,7 +87,7 @@
 <% unless @user.admin %>
   <%= button_to "Добавить ведомостичку", new_user_order_path(user_id: @user), :method => :get, :class => "new_order buttonleft"  %>
   <%= button_to('Выйти', destroy_user_session_path, :method => :delete, :class => "buttonright")%> 
-  <table border="2px;" cellpadding="10px;" class="order_table">
+  <table  class="order_table" border= "2px"; cellpadding = "10px" >
   <caption class="caption">Ведомостички</caption>
   <col class="col1">
   <col class="col2">
@@ -100,16 +107,22 @@
         <div>in progress</div>
       <% else %>
         <div>Ready</div>
+        </td>
         <td><%= button_to "Удалить" %></td>
       </tr>
-      <% end %></td>
+      <% end %>
     <% end %>
   </table>
 
 <% else %>
 <%= button_to('Выйти', destroy_user_session_path, :method => :delete, :class => "buttonright")%>
-<table border="2px;" cellpadding="10px;" class="order_table">
-<caption>Ведомостички</caption>
+<table  class="order_table" border= "2px"; cellpadding = "10px">
+<caption class="caption">Ведомостички</caption>
+  <col class="col5">
+  <col class="col6">
+  <col class="col2">
+  <col class="col3">
+  <col class="col7">
   <tr>
     <td>Имя</td>
     <td>Предмет</td>

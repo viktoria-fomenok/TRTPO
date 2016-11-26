@@ -1,95 +1,109 @@
 <style type="text/css">
-.registry {
-  position: absolute;
-  top: 2%;
-  left: 40%;
-}
-.field {
-  margin-top: 0%;
-}
+   h2 {
+    position: relative;
+    margin-left: 8%;
+    color: #100137;
+  }
 
-.rbutton1 {
-  display: inline-block;
-}
-.rbutton2 {
-  display: inline-block;
-}
-.form {
-     
- }
+  .registry {
+    position: absolute;
+    top: 2%;
+    left: 40%;
+  }
 
-.buttonback {
-  position: relative;
- 
-}
+  .field {
+    margin-top: 0%;
+  }
 
-h2 {
-  position: relative;
-  left: 20%;
-   color: #100137;
-}
+  .rbutton_student {
+    display: inline-block;
+  }
+
+  .rbutton_professor {
+    display: inline-block;
+    position: absolute;
+    right: 57%;
+  }
+
+  .rlabel_professor {
+    right: 10%;
+  }
+
+  .buttonback {
+    position: absolute;
+    right: 5%;
+    top: 5%;
+  }
+
+  .radiobutton_container {
+    width: 100%;
+    height: 30px;
+    display: inline-block;
+    position: relative;
+  }
 </style>
 
 <div class="registry">
-<h2>Sign up</h2>
+<h2>Регистрация</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
    <div class="field form">
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name, autofocus: true %>
+    <%= f.label :first_name, 'Имя' %>
+    <%= f.text_field :first_name, autofocus: true , placeholder: "Введите имя" %>
   </div>
 
    <div class="field form">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
+    <%= f.label :last_name, 'Фамилия'%>
+    <%= f.text_field :last_name, placeholder: "Введите фамилию"  %>
   </div>
 
 
   <div class="field form">
-    <%= f.label :email %>
-    <%= f.email_field :email %>
+    <%= f.label :email, 'Эл. адрес'%>
+    <%= f.email_field :email, placeholder: "Введите эл.адрес"  %>
   </div>
 
   <div class="field form">
-    <%= f.label :password %>
+    <%= f.label :password, 'Пароль'%>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password, autocomplete: "off", placeholder: "Введите пароль" %>
   </div>
 
 
 
   <div class="field form">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.label :password_confirmation, 'Повторите пароль' %>
+    <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Повторите пароль" %>
   </div>
 
 
-  <div class="rbutton1">
-    <%= f.radio_button :is_student, true%>
+  <div class="radiobutton_container">
+    <div class="rbutton_student">
+      <%= f.radio_button :is_student, true%>
+    </div>
+    <div class="rbutton_student">
+       <%= f.label :is_student, "Студент"%> 
+    </div>
+    <div class="rbutton_professor">
+      <%= f.radio_button :is_student, false %> 
+    </div>  
+    <div class="rbutton_professor rlabel_professor">
+      <%= f.label :is_student, "Преподователь" %> 
+    </div>
   </div>
-  <div class="rbutton1 form">
-     <%= f.label :is_student, "Student"%> 
-  </div><br/>
-  <div class="rbutton2">
-    <%= f.radio_button :is_student, false %> 
-  </div>  
-  <div class="rbutton2 form">
-    <%= f.label :is_student, "Professor" %> 
-  </div><br/>
   
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="">
+    <%= f.submit "Зарегистрироваться" %>
   </div>
 <% end %>
-  <div class="actions buttonback">
-    <%= button_to "Back", root_path, :method => :get %>
-  </div>
 
-  <div class="form">
-    <%= render "users/shared/links" %>
-  </div>
+    <!-- <%= render "users/shared/links" %> -->
+</div>
+
+<div class="buttonback">
+    <%= button_to "Назад", root_path, :method => :get %>
 </div>

@@ -112,12 +112,12 @@
     <tr>
       <td><%= order.subject %></td>
       <td><%= order.data %></td>
-      <td><% if !order.status %>
-        <div>in progress</div>
+      <% if !order.status %>
+        <td><div>in progress</div></td>
+        <td></td>
       <% else %>
-        <div>Ready</div>
-        </td>
-        <td><%= button_to "Удалить" %></td>
+        <td><div>Ready</div></td>
+        <td><%= button_to "Удалить", order_path(order.id), :method => :delete %></td>
       </tr>
       <% end %>
     <% end %>

@@ -139,8 +139,9 @@
     <th>Прогресс</th>
     <th>Подтверждение</th>
   </tr>
+  
   <% @users.each do |user| %>
-    
+    <tr>
     <% user.orders.each do |order| %>
       <% unless order.status %>
       <td><%= user.first_name unless user.admin %></td>
@@ -148,8 +149,10 @@
         <td><%= order.data %></td>
         <td><%= order.status %></td>
         <td><%= button_to "Подтвердить", orders_check_path(order.id), :method => :get %></td>
+        </tr>
       <% end %>
     <% end %>
   <% end %>
+
 <% end %>
 </div>

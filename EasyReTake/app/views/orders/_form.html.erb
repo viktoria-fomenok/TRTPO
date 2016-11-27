@@ -12,36 +12,36 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :order_type %>
-    <%= f.text_field :order_type %>
+    <%= f.label :order_type, 'Тип ведомостички'%>
+    <%= f.select :order_type, ['Экзамен', 'Зачет', 'Лабораторная работа', 'Дифференцированный зачет', 'Курсовая работа']%>
   </div>
 
   <div class="field">
-    <%= f.label :subject %>
+    <%= f.label :subject, 'Предмет'%>
     <%= f.text_field :subject %>
   </div>
 
   <div class="field">
-    <%= f.label :fio_professor %>
+    <%= f.label :fio_professor, 'Ф.И.О преподователя полностью' %>
     <%= f.text_field :fio_professor %>
   </div>
 
   <div class="field">
-    <%= f.label :position_professor %>
-    <%= f.text_field :position_professor %>
+    <%= f.label :position_professor, 'Должность преподователя' %>
+    <%= f.select :position_professor, ['Ассистент', 'Доцент', 'Профессор']%>
   </div>
 
   <div class="field">
-    <%= f.label :reason %>
-    <%= f.text_field :reason %>
+    <%= f.label :reason, 'Причина отработки' %>
+    <%= f.select :reason, ['Уважительная', 'Неуважительная']%>
   </div>
 
   <div class="field">
-    <%= f.label :data %>
-    <%= f.datetime_select :data %>
+    <%= f.label :data, 'Дата пропуска лр / не сдачи зачета/экзамена' %>
+    <%= f.date_select :data %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Заказать ведомостичку"%>
   </div>
 <% end %>

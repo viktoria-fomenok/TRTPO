@@ -9,6 +9,7 @@
   .name {
     text-align: center;
     font-size: 30px;
+    color: #1C0B4A;
     font-weight: bold;
     position: relative;
     left: -3%;
@@ -45,10 +46,10 @@
     width: 385px; 
   }
   .col2 { 
-    width: 240px; 
+    width: 230px; 
   }
   .col3 { 
-    width: 160px; 
+    width: 170px; 
   }
   .col4 { 
     width: 115px;
@@ -67,6 +68,7 @@
     margin-bottom: 20px;
     font-size: 25px;
     font-style: italic;
+
   }
 
   .new_order {
@@ -113,10 +115,10 @@
       <td><%= order.subject %></td>
       <td><%= order.data %></td>
       <% if !order.status %>
-        <td><div>in progress</div></td>
+        <td><div>Обрабатывается</div></td>
         <td></td>
       <% else %>
-        <td><div>Ready</div></td>
+        <td><div>Готова</div></td>
         <td><%= button_to "Удалить", order_path(order.id), :method => :delete %></td>
       </tr>
       <% end %>
@@ -147,9 +149,9 @@
       <td><%= user.first_name unless user.admin %></td>
         <td><%= order.subject %></td>
         <td><%= order.data %></td>
-        <td><%= order.status %></td>
+        <td><div>Обрабатывается</div></td>
         <td><%= button_to "Подтвердить", orders_check_path(order.id), :method => :get %></td>
-        </tr>
+    </tr>
       <% end %>
     <% end %>
   <% end %>

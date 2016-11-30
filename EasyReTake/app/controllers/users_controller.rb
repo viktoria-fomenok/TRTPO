@@ -27,11 +27,45 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def professors_list
+    @professors = User.where(:is_student => false)
+  end
+
+  def line
+    @professor = User.find(params[:professor_id])
+    @professor.students_ids << params[:id] + " "
+    p @professor.students_ids
+    @professor.save
+    respond_to do |format|
+      format.html { redirect_to current_user }
+      format.json { head :no_content }
+    end
+  end
+
+  def send_data
+    @professor = User.find(params[:id])
+    @user = User.find(params[:user_id])
+    p time3 = params[:date]
+    NotificationMailer.data_of_exam(@professor, @user, time3).deliver
+    array = @professor.students_ids.split(' ')
+    p array
+    array.each do |i|
+      if i.to_i == params[:user_id].to_i
+        array.delete(i)
+      end
+    end
+    @professor.students_ids = array.join(" ")
+    @professor.save
+    respond_to do |format|
+      format.html { redirect_to current_user }
+      format.json { head :no_content }
+    end
+  end
+
   # POST /users
   # POST /users.json
   def create
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user }

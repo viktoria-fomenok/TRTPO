@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resource)
-    if current_user.sign_in_count == 1 
+    if current_user.sign_in_count == 1 && current_user.is_student
       users_info_path(current_user)
     else
       user_path(current_user)

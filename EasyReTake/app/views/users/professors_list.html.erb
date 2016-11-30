@@ -1,0 +1,5 @@
+<% @professors.each do |professor| %>
+	<%= professor.first_name %>
+	<%= professor.last_name %>
+	<%= button_to "Записаться", line_path(params[:id], professor.id), :method => :get %>
+<% end %>

@@ -1,47 +1,79 @@
-<%= form_for(order) do |f| %>
-  <% if order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+<style type="text/css">
+  h1 {
+    font-size: 18px;
+    
+    line-height: 1.0;
+    font-style: italic;
+  }
 
-      <ul>
-      <% order.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  .order_form {
+    position: absolute;
+    top: 2%;
+    left: 40%;
+  }
+
+  .field {
+    margin-top: 0%;
+  }
+
+  .buttonback {
+    position: absolute;
+    right: 5%;
+    top: 5%;
+  }
+</style>
+
+<div class="order_form">
+  <h1>Для заказа ведомостички заполните <br> приведенную ниже форму:</h1>
+  <%= form_for(order) do |f| %>
+    <% if order.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+        <ul>
+        <% order.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :order_type, 'Тип ведомостички'%>
+      <%= f.select :order_type, ['Экзамен', 'Зачет', 'Лабораторная работа', 'Дифференцированный зачет', 'Курсовая работа']%>
+    </div>
+
+    <div class="field">
+      <%= f.label :subject, 'Предмет'%>
+      <%= f.text_field :subject %>
+    </div>
+
+    <div class="field">
+      <%= f.label :fio_professor, 'Ф.И.О преподователя полностью' %>
+      <%= f.text_field :fio_professor %>
+    </div>
+
+    <div class="field">
+      <%= f.label :position_professor, 'Должность преподователя' %>
+      <%= f.select :position_professor, ['Ассистент', 'Доцент', 'Профессор']%>
+    </div>
+
+    <div class="field">
+      <%= f.label :reason, 'Причина отработки' %>
+      <%= f.select :reason, ['Уважительная', 'Неуважительная']%>
+    </div>
+
+    <div class="field">
+      <%= f.label :data, 'Дата пропуска лр / не сдачи зачета/экзамена' %>
+      <%= f.date_select :data %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Заказать ведомостичку"%>
     </div>
   <% end %>
+</div>
 
-  <div class="field">
-    <%= f.label :order_type, 'Тип ведомостички'%>
-    <%= f.select :order_type, ['Экзамен', 'Зачет', 'Лабораторная работа', 'Дифференцированный зачет', 'Курсовая работа']%>
-  </div>
-
-  <div class="field">
-    <%= f.label :subject, 'Предмет'%>
-    <%= f.text_field :subject %>
-  </div>
-
-  <div class="field">
-    <%= f.label :fio_professor, 'Ф.И.О преподователя полностью' %>
-    <%= f.text_field :fio_professor %>
-  </div>
-
-  <div class="field">
-    <%= f.label :position_professor, 'Должность преподователя' %>
-    <%= f.select :position_professor, ['Ассистент', 'Доцент', 'Профессор']%>
-  </div>
-
-  <div class="field">
-    <%= f.label :reason, 'Причина отработки' %>
-    <%= f.select :reason, ['Уважительная', 'Неуважительная']%>
-  </div>
-
-  <div class="field">
-    <%= f.label :data, 'Дата пропуска лр / не сдачи зачета/экзамена' %>
-    <%= f.date_select :data %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Заказать ведомостичку"%>
-  </div>
-<% end %>
+<div class="buttonback">
+    <%= button_to "Назад", user_path(:id), :method => :get %>
+</div>

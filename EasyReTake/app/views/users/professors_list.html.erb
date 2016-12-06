@@ -1,5 +1,81 @@
-<% @professors.each do |professor| %>
-	<%= professor.first_name %>
-	<%= professor.last_name %>
-	<%= button_to "Записаться", line_path(params[:id], professor.id), :method => :get %>
-<% end %>
+<style type="text/css">
+	td {
+      font-size: 20px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    th{
+      font-size: 21px;
+      background-color: rgba(42, 118, 145, 0.7);
+      border-width: 2px; 
+      vertical-align: middle;
+    }  
+
+    table {
+      background-color: rgba(70, 109, 117, 0.7);
+      table-layout: fixed; /* Фиксированная ширина ячеек */
+      width: 800px; /* Ширина таблицы */
+      position: relative;
+      left: 15%;
+      top: 20px;
+      font-size: 20px;
+      border-color: rgb(3,3,3)
+    }
+
+	.caption {
+	  text-align: center;
+      font-size: 30px;
+      color: #1C0B4A;
+      font-weight: bold;
+      position: relative;
+      bottom: 15px;
+	}    
+
+    .col1 { 
+      width: 400px; 
+    }
+    .col2 { 
+      width: 400px; 
+    }
+
+	.write_to_professor {
+      position:absolute;
+      top: 5%;
+      left: 5%;
+      right: 5%;      
+	}
+
+	.button_back {
+      position: absolute;
+      right: 5%;
+      top: 5%;
+    }
+</style>
+
+<div class="write_to_professor">
+	<table  class="order_table" border= "2px"; cellpadding = "10px" >
+		<caption class="caption">Список преподователей:</caption>
+  		<col class="col1">
+  		<col class="col2">
+  		<tr>
+    		<th>Преподователь</th>
+    		<th>Пересдача</th>
+  		</tr>
+  		<tr>
+			<% @professors.each do |professor| %>
+				<td>
+					<%= professor.first_name %>
+					<%= professor.last_name %>
+				</td>
+				<td>
+					<%= button_to "Записаться", line_path(params[:id], professor.id), :method => :get %>
+				</td>
+		</tr>
+			<% end %>
+	</table>
+</div>
+
+<div class="button_back">
+    <%= button_to "Назад", user_path, :method => :get %>
+</div>

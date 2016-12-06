@@ -1,3 +1,13 @@
+<style type="text/css">
+  .info {
+    position: absolute;
+    top: 20%;
+    left: 40%;
+    font-size: 14px;
+  }
+</style>
+
+<div class="info">
   <%= form_for(@user) do |f| %>
     <% if @user.errors.any? %>
       <div id="error_explanation">
@@ -11,21 +21,22 @@
     <% end %>
 
     <div class="field">
-      <%= f.label :faculty %>
-      <%= f.text_field :faculty %>
+      <%= f.label :faculty, "Факультет" %>
+      <%= f.text_field :faculty , placeholder: "КСИС"%>
     </div>
 
     <div class="field">
-      <%= f.label :course %>
-      <%= f.text_field :course %>
+      <%= f.label :course, "Курс" %>
+      <%= f.text_field :course, placeholder: "1"%>
     </div>
 
     <div class="field">
-      <%= f.label :group %>
-      <%= f.text_field :group %>
+      <%= f.label :group, "Группа"%>
+      <%= f.text_field :group, placeholder: "459593" %>
     </div>
 
     <div class="actions">
-      <%= f.submit %>
+      <%= f.submit "Подтвердить"%>
     </div>
   <% end %>
+</div>
